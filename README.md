@@ -18,3 +18,7 @@ Requires the official SmartThings integration and the Android bridge app (login 
 - Tokens are stored in the config entry and refreshed automatically; reauth is supported.
 - Tag position is a hint only: it never confirms presence by itself.
 - `android-bridge/` holds the bridge app source (plain Gradle, debug APK).
+
+## License
+
+GPL-3.0, see [LICENSE](LICENSE). Free to use, change and share.
