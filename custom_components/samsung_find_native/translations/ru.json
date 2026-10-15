@@ -2,6 +2,10 @@
   "title": "Samsung Find Native",
   "config": {
     "step": {
+      "user": {
+        "title": "Нужен Android-мост",
+        "description": "**Без приложения Samsung Find Bridge эта настройка работать не будет.** Сначала установите его на телефон Samsung: [samsung-find-bridge.apk]({apk_url}). Затем нажмите «Отправить» и войдите в аккаунт Samsung на открывшейся на телефоне странице."
+      },
       "authorize": {
         "title": "Вход в Samsung",
         "description": "На телефоне откроется страница входа Samsung. Войдите в свой аккаунт Samsung, Home Assistant продолжит настройку автоматически."

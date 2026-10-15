@@ -13,5 +13,5 @@
     "custom_components.samsung_find_native"
   ],
   "requirements": [],
-  "version": "0.2.0"
+  "version": "0.2.1"
 }

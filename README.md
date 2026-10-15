@@ -2,7 +2,7 @@
 
 Home Assistant custom integration for Samsung SmartTag2 via Samsung Find: Samsung Account login, no cookies or YAML.
 Entities per tag: device_tracker, battery (percent estimate and level), last seen, accuracy, nearby, online, ring start/stop, firmware.
-Requires the official SmartThings integration and the Android bridge app (login callback).
+Requires the official SmartThings integration and the Android bridge app (login callback). Setup shows a notice first: without the bridge APK the login will not work.
 
 ## Install
 

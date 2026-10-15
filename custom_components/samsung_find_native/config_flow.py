@@ -23,6 +23,7 @@ from .callback import (
     external_base_url,
 )
 from .const import (
+    BRIDGE_APK_URL,
     CONF_OFFLINE_AFTER,
     DEFAULT_OFFLINE_AFTER,
     MAX_OFFLINE_AFTER,
@@ -50,6 +51,14 @@ class SamsungFindConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> config_entries.ConfigFlowResult:
+        if user_input is None:
+            return self.async_show_form(
+                step_id="user",
+                description_placeholders={"apk_url": BRIDGE_APK_URL},
+            )
+        return await self._async_start_authorize()
+
+    async def _async_start_authorize(self) -> config_entries.ConfigFlowResult:
         ensure_callback_views(self.hass)
 
         try:
@@ -87,7 +96,7 @@ class SamsungFindConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     ) -> config_entries.ConfigFlowResult:
         if user_input is None:
             if self._start_url is None:
-                return await self.async_step_user()
+                return await self._async_start_authorize()
             return self.async_external_step(
                 step_id="authorize",
                 url=self._start_url,

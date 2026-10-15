@@ -48,3 +48,7 @@ MAX_OFFLINE_AFTER = 1440
 MODEL_NAMES = {'EI-T5600': 'Galaxy SmartTag2'}
 SERVICE_RING = 'ring'
 ATTR_ACTION = 'action'
+
+BRIDGE_APK_URL = (
+    "https://github.com/Drongo76/ha-samsung-find-native/blob/main/release/samsung-find-bridge.apk"
+)

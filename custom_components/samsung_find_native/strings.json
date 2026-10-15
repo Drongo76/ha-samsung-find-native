@@ -2,6 +2,10 @@
   "title": "Samsung Find Native",
   "config": {
     "step": {
+      "user": {
+        "title": "Android bridge required",
+        "description": "**Without the Samsung Find Bridge app this setup will not work.** Install it on your Samsung phone first: [samsung-find-bridge.apk]({apk_url}). Then click Submit and sign in with your Samsung account in the page that opens on the phone."
+      },
       "authorize": {
         "title": "Sign in to Samsung",
         "description": "A Samsung sign-in page opens on your phone. Sign in with your Samsung account; Home Assistant continues automatically."
