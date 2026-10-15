@@ -18,10 +18,18 @@ from homeassistant.const import (
     UnitOfLength,
     UnitOfSpeed,
 )
+from homeassistant.components.zone import async_active_zone
 from homeassistant.core import HomeAssistant
+from homeassistant.util import dt as dt_util
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .const import BATTERY_LEVELS, DOMAIN
+from .const import (
+    BATTERY_LEVELS,
+    DOMAIN,
+    HINT_MAX_ACCURACY,
+    HINT_MAX_AGE_MINUTES,
+    HINT_KEY,
+)
 from .coordinator import SamsungFindCoordinator
 from .entity import SamsungFindEntity, item_last_seen, to_datetime
 
@@ -126,6 +134,9 @@ async def async_setup_entry(
         data = coordinator.data or {}
         entities = []
         for device_id in data:
+            if (device_id, HINT_KEY) not in known:
+                known.add((device_id, HINT_KEY))
+                entities.append(SamsungFindLocationHint(coordinator, device_id))
             for description in DESCRIPTIONS:
                 key = (device_id, description.key)
                 if key in known:
@@ -173,4 +184,61 @@ class SamsungFindSensor(SamsungFindEntity, SensorEntity):
         return {
             'estimated': item.get('battery_estimated'),
             'battery_level': _loc(item, 'battery'),
+        }
+
+
+class SamsungFindLocationHint(SamsungFindEntity, SensorEntity):
+    """Supplementary position hint of the tag.
+
+    Strict by design: a fix older than HINT_MAX_AGE_MINUTES or less accurate than
+    HINT_MAX_ACCURACY metres is reported as "unconfirmed". It is only a hint and
+    is never meant to confirm presence on its own.
+    """
+
+    _attr_translation_key = 'location_hint'
+
+    def __init__(self, coordinator: SamsungFindCoordinator, device_id: str) -> None:
+        super().__init__(coordinator, device_id)
+        self._attr_unique_id = f'{device_id}_{HINT_KEY}'
+
+    def _fix(self) -> tuple[float, float, float, float] | None:
+        """Return (lat, lon, accuracy, age in minutes) of a usable fix."""
+        location = self._location
+        if not location or not location.get('has_location'):
+            return None
+        try:
+            lat = float(location['latitude'])
+            lon = float(location['longitude'])
+            accuracy = float(location.get('accuracy'))
+        except (KeyError, TypeError, ValueError):
+            return None
+        seen = to_datetime(location.get('last_update_time'))
+        if seen is None:
+            return None
+        age = (dt_util.utcnow() - seen).total_seconds() / 60
+        return lat, lon, accuracy, age
+
+    @property
+    def native_value(self) -> str:
+        fix = self._fix()
+        if fix is None:
+            return 'unconfirmed'
+        lat, lon, accuracy, age = fix
+        if age < 0 or age > HINT_MAX_AGE_MINUTES or accuracy > HINT_MAX_ACCURACY:
+            return 'unconfirmed'
+        zone = async_active_zone(self.hass, lat, lon, accuracy)
+        if zone is None:
+            return 'not_home'
+        if zone.entity_id == 'zone.home':
+            return 'home'
+        return zone.name
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        fix = self._fix()
+        return {
+            'age_minutes': round(fix[3], 1) if fix else None,
+            'accuracy': fix[2] if fix else None,
+            'max_age_minutes': HINT_MAX_AGE_MINUTES,
+            'max_accuracy': HINT_MAX_ACCURACY,
         }

@@ -64,6 +64,9 @@
       },
       "location_method": {
         "name": "Ortungsmethode"
+      },
+      "location_hint": {
+        "name": "Standorthinweis"
       }
     },
     "binary_sensor": {

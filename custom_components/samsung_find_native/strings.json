@@ -64,6 +64,9 @@
       },
       "location_method": {
         "name": "Location method"
+      },
+      "location_hint": {
+        "name": "Location hint"
       }
     },
     "binary_sensor": {

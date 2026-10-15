@@ -25,6 +25,14 @@
       },
       "location_method": {
         "default": "mdi:map-marker-radius-outline"
+      },
+      "location_hint": {
+        "default": "mdi:map-marker-question-outline",
+        "state": {
+          "home": "mdi:home-map-marker",
+          "not_home": "mdi:map-marker-outline",
+          "unconfirmed": "mdi:map-marker-question-outline"
+        }
       }
     },
     "binary_sensor": {

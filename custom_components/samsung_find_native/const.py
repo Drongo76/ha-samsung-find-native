@@ -52,3 +52,7 @@ ATTR_ACTION = 'action'
 BRIDGE_APK_URL = (
     "https://github.com/Drongo76/ha-samsung-find-native/blob/main/release/samsung-find-bridge.apk"
 )
+
+HINT_KEY = 'location_hint'
+HINT_MAX_AGE_MINUTES = 30
+HINT_MAX_ACCURACY = 200

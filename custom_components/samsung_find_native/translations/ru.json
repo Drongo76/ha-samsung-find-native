@@ -64,6 +64,9 @@
       },
       "location_method": {
         "name": "Метод определения места"
+      },
+      "location_hint": {
+        "name": "Подсказка по положению"
       }
     },
     "binary_sensor": {
