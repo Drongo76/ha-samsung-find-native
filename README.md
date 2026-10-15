@@ -19,6 +19,13 @@ Requires the official SmartThings integration and the Android bridge app (login 
 - Tag position is a hint only: it never confirms presence by itself.
 - `android-bridge/` holds the bridge app source (plain Gradle, debug APK).
 
+## Disclaimer
+
+Unofficial, private project. Not affiliated with, endorsed by or supported by Samsung. It uses an unofficial way to access Samsung Find and may stop working at any time.
+Provided "as is", without warranty of any kind. Use at your own risk: the author takes no responsibility or liability for any damage, data loss, account problems or other consequences. See also sections 15 and 16 of the [LICENSE](LICENSE).
+
+Неофициальный личный проект, не связан с Samsung. Используется на свой страх и риск, автор не несёт никакой ответственности за последствия.
+
 ## License
 
 GPL-3.0, see [LICENSE](LICENSE). Free to use, change and share.
