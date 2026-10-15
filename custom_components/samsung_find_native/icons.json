@@ -33,6 +33,9 @@
           "not_home": "mdi:map-marker-outline",
           "unconfirmed": "mdi:map-marker-question-outline"
         }
+      },
+      "coordinates": {
+        "default": "mdi:crosshairs-gps"
       }
     },
     "binary_sensor": {

@@ -42,6 +42,16 @@ def _dev(item: dict[str, Any], key: str) -> Any:
     return (item.get('device') or {}).get(key)
 
 
+def _coordinates(item: dict[str, Any]) -> str | None:
+    lat, lon = _loc(item, 'latitude'), _loc(item, 'longitude')
+    if not _loc(item, 'has_location') or lat is None or lon is None:
+        return None
+    try:
+        return f'{float(lat):.6f}, {float(lon):.6f}'
+    except (TypeError, ValueError):
+        return None
+
+
 def _battery_level(item: dict[str, Any]) -> str | None:
     value = _loc(item, 'battery')
     return value if value in BATTERY_LEVELS else None
@@ -98,6 +108,11 @@ DESCRIPTIONS = (
         entity_category=EntityCategory.DIAGNOSTIC,
         entity_registry_enabled_default=False,
         value_fn=lambda item: _loc(item, 'speed'),
+    ),
+    SamsungFindSensorDescription(
+        key='coordinates',
+        translation_key='coordinates',
+        value_fn=_coordinates,
     ),
     SamsungFindSensorDescription(
         key='battery_updated',
@@ -178,9 +193,20 @@ class SamsungFindSensor(SamsungFindEntity, SensorEntity):
 
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None:
+        item = self._item or {}
+        if self.entity_description.key == 'coordinates':
+            value = self.native_value
+            if value is None:
+                return None
+            lat, lon = value.split(', ')
+            return {
+                'latitude': float(lat),
+                'longitude': float(lon),
+                'accuracy': _loc(item, 'accuracy'),
+                'map_url': f'https://www.google.com/maps?q={lat},{lon}',
+            }
         if self.entity_description.key != 'battery_percent':
             return None
-        item = self._item or {}
         return {
             'estimated': item.get('battery_estimated'),
             'battery_level': _loc(item, 'battery'),

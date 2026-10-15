@@ -67,6 +67,9 @@
       },
       "location_hint": {
         "name": "Standorthinweis"
+      },
+      "coordinates": {
+        "name": "Koordinaten"
       }
     },
     "binary_sensor": {
