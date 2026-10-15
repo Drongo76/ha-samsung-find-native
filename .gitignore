@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+android-bridge/build/
+android-bridge/.gradle/
+android-bridge/local.properties
+*.keystore

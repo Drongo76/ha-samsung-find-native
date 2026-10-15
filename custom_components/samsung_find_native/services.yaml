@@ -1,0 +1,15 @@
+ring:
+  target:
+    entity:
+      integration: samsung_find_native
+      domain: device_tracker
+  fields:
+    action:
+      required: true
+      default: start
+      selector:
+        select:
+          options:
+            - start
+            - stop
+          translation_key: ring_action

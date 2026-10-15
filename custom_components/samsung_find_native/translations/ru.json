@@ -1,0 +1,135 @@
+{
+  "title": "Samsung Find Native",
+  "config": {
+    "step": {
+      "authorize": {
+        "title": "Вход в Samsung",
+        "description": "На телефоне откроется страница входа Samsung. Войдите в свой аккаунт Samsung, Home Assistant продолжит настройку автоматически."
+      }
+    },
+    "abort": {
+      "already_configured": "Этот Samsung Account уже настроен.",
+      "auth_expired": "Сессия входа Samsung истекла. Запустите настройку заново.",
+      "cannot_connect": "Не удалось подключиться к Samsung.",
+      "invalid_auth": "Ошибка авторизации Samsung.",
+      "no_external_url": "Для входа Samsung в Home Assistant должен быть настроен внешний HTTPS-адрес.",
+      "reauth_successful": "Вход в Samsung успешно обновлён.",
+      "wrong_account": "Это другой аккаунт Samsung, не тот, что настроен."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Настройки Samsung Find",
+        "data": {
+          "update_interval": "Интервал обновления (секунды)",
+          "pin": "PIN шифрования Find",
+          "offline_after": "Офлайн через (минуты)"
+        },
+        "data_description": {
+          "update_interval": "Как часто Home Assistant запрашивает новые данные у Samsung Find.",
+          "pin": "Нужен только если для ваших меток включено сквозное шифрование.",
+          "offline_after": "Метка считается офлайн, если её не видели столько времени."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_level": {
+        "name": "Уровень батареи",
+        "state": {
+          "very_low": "Очень низкий",
+          "low": "Низкий",
+          "medium": "Средний",
+          "full": "Полный",
+          "unknown": "Неизвестно"
+        }
+      },
+      "last_seen": {
+        "name": "Последнее обнаружение"
+      },
+      "accuracy": {
+        "name": "Точность координат"
+      },
+      "battery_updated": {
+        "name": "Батарея обновлена"
+      },
+      "connection_state": {
+        "name": "Состояние соединения"
+      },
+      "location_method": {
+        "name": "Метод определения места"
+      }
+    },
+    "binary_sensor": {
+      "nearby": {
+        "name": "Рядом"
+      },
+      "online": {
+        "name": "На связи"
+      },
+      "remote_ring": {
+        "name": "Удалённый звонок включён"
+      },
+      "e2e_encryption": {
+        "name": "Сквозное шифрование"
+      },
+      "pin_required": {
+        "name": "Требуется PIN"
+      },
+      "location_error": {
+        "name": "Ошибка определения места"
+      }
+    },
+    "button": {
+      "refresh": {
+        "name": "Обновить данные"
+      },
+      "ring_start": {
+        "name": "Включить звонок"
+      },
+      "ring_stop": {
+        "name": "Остановить звонок"
+      }
+    },
+    "switch": {
+      "searching": {
+        "name": "Режим поиска"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Прошивка"
+      }
+    }
+  },
+  "exceptions": {
+    "ring_failed": {
+      "message": "Не удалось включить звонок метки: {error}"
+    },
+    "searching_failed": {
+      "message": "Не удалось изменить режим поиска: {error}"
+    }
+  },
+  "services": {
+    "ring": {
+      "name": "Звонок метки",
+      "description": "Включает или останавливает звонок SmartTag.",
+      "fields": {
+        "action": {
+          "name": "Действие",
+          "description": "Включить или остановить звонок."
+        }
+      }
+    }
+  },
+  "selector": {
+    "ring_action": {
+      "options": {
+        "start": "Включить звонок",
+        "stop": "Остановить звонок"
+      }
+    }
+  }
+}

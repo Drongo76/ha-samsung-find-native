@@ -1,0 +1,83 @@
+{
+  "entity": {
+    "sensor": {
+      "battery_level": {
+        "default": "mdi:battery-unknown",
+        "state": {
+          "very_low": "mdi:battery-alert",
+          "low": "mdi:battery-30",
+          "medium": "mdi:battery-60",
+          "full": "mdi:battery",
+          "unknown": "mdi:battery-unknown"
+        }
+      },
+      "last_seen": {
+        "default": "mdi:eye-check-outline"
+      },
+      "accuracy": {
+        "default": "mdi:crosshairs-gps"
+      },
+      "battery_updated": {
+        "default": "mdi:battery-clock-outline"
+      },
+      "connection_state": {
+        "default": "mdi:bluetooth-connect"
+      },
+      "location_method": {
+        "default": "mdi:map-marker-radius-outline"
+      }
+    },
+    "binary_sensor": {
+      "nearby": {
+        "default": "mdi:bluetooth-connect",
+        "state": {
+          "off": "mdi:bluetooth-off"
+        }
+      },
+      "remote_ring": {
+        "default": "mdi:bell-ring-outline",
+        "state": {
+          "off": "mdi:bell-off-outline"
+        }
+      },
+      "e2e_encryption": {
+        "default": "mdi:lock-check-outline",
+        "state": {
+          "off": "mdi:lock-open-variant-outline"
+        }
+      },
+      "pin_required": {
+        "default": "mdi:dialpad"
+      },
+      "location_error": {
+        "default": "mdi:map-marker-alert-outline"
+      }
+    },
+    "button": {
+      "refresh": {
+        "default": "mdi:refresh"
+      },
+      "ring_start": {
+        "default": "mdi:bell-ring"
+      },
+      "ring_stop": {
+        "default": "mdi:bell-off"
+      }
+    },
+    "switch": {
+      "searching": {
+        "default": "mdi:radar"
+      }
+    },
+    "device_tracker": {
+      "tag": {
+        "default": "mdi:tag-outline"
+      }
+    }
+  },
+  "services": {
+    "ring": {
+      "service": "mdi:bell-ring"
+    }
+  }
+}

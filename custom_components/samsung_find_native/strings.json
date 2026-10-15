@@ -1,0 +1,135 @@
+{
+  "title": "Samsung Find Native",
+  "config": {
+    "step": {
+      "authorize": {
+        "title": "Sign in to Samsung",
+        "description": "A Samsung sign-in page opens on your phone. Sign in with your Samsung account; Home Assistant continues automatically."
+      }
+    },
+    "abort": {
+      "already_configured": "This Samsung account is already configured.",
+      "auth_expired": "The Samsung sign-in session expired. Start setup again.",
+      "cannot_connect": "Cannot connect to Samsung.",
+      "invalid_auth": "Samsung authentication failed.",
+      "no_external_url": "Home Assistant needs a configured external HTTPS URL for Samsung sign-in.",
+      "reauth_successful": "Samsung sign-in was renewed successfully.",
+      "wrong_account": "This is a different Samsung account than the one configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Samsung Find options",
+        "data": {
+          "update_interval": "Update interval (seconds)",
+          "pin": "Find encryption PIN",
+          "offline_after": "Offline after (minutes)"
+        },
+        "data_description": {
+          "update_interval": "How often Home Assistant asks Samsung Find for new data.",
+          "pin": "Only needed if end-to-end encryption is enabled for your tags.",
+          "offline_after": "The tag counts as offline if it was not seen for this long."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_level": {
+        "name": "Battery level",
+        "state": {
+          "very_low": "Very low",
+          "low": "Low",
+          "medium": "Medium",
+          "full": "Full",
+          "unknown": "Unknown"
+        }
+      },
+      "last_seen": {
+        "name": "Last seen"
+      },
+      "accuracy": {
+        "name": "Location accuracy"
+      },
+      "battery_updated": {
+        "name": "Battery updated"
+      },
+      "connection_state": {
+        "name": "Connection state"
+      },
+      "location_method": {
+        "name": "Location method"
+      }
+    },
+    "binary_sensor": {
+      "nearby": {
+        "name": "Nearby"
+      },
+      "online": {
+        "name": "Online"
+      },
+      "remote_ring": {
+        "name": "Remote ring enabled"
+      },
+      "e2e_encryption": {
+        "name": "End-to-end encryption"
+      },
+      "pin_required": {
+        "name": "PIN required"
+      },
+      "location_error": {
+        "name": "Location error"
+      }
+    },
+    "button": {
+      "refresh": {
+        "name": "Refresh data"
+      },
+      "ring_start": {
+        "name": "Start ringing"
+      },
+      "ring_stop": {
+        "name": "Stop ringing"
+      }
+    },
+    "switch": {
+      "searching": {
+        "name": "Search mode"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Firmware"
+      }
+    }
+  },
+  "exceptions": {
+    "ring_failed": {
+      "message": "Could not ring the tag: {error}"
+    },
+    "searching_failed": {
+      "message": "Could not change the search mode: {error}"
+    }
+  },
+  "services": {
+    "ring": {
+      "name": "Ring tag",
+      "description": "Starts or stops the ringing of a SmartTag.",
+      "fields": {
+        "action": {
+          "name": "Action",
+          "description": "Start or stop ringing."
+        }
+      }
+    }
+  },
+  "selector": {
+    "ring_action": {
+      "options": {
+        "start": "Start ringing",
+        "stop": "Stop ringing"
+      }
+    }
+  }
+}

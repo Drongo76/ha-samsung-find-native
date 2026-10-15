@@ -1,0 +1,135 @@
+{
+  "title": "Samsung Find Native",
+  "config": {
+    "step": {
+      "authorize": {
+        "title": "Bei Samsung anmelden",
+        "description": "Auf Ihrem Handy wird die Samsung-Anmeldung geöffnet. Melden Sie sich mit Ihrem Samsung-Konto an; Home Assistant macht danach automatisch weiter."
+      }
+    },
+    "abort": {
+      "already_configured": "Dieses Samsung-Konto ist bereits eingerichtet.",
+      "auth_expired": "Die Samsung-Anmeldesitzung ist abgelaufen. Einrichtung erneut starten.",
+      "cannot_connect": "Verbindung zu Samsung nicht möglich.",
+      "invalid_auth": "Samsung-Authentifizierung fehlgeschlagen.",
+      "no_external_url": "Für die Samsung-Anmeldung benötigt Home Assistant eine konfigurierte externe HTTPS-URL.",
+      "reauth_successful": "Die Samsung-Anmeldung wurde erfolgreich erneuert.",
+      "wrong_account": "Das ist ein anderes Samsung-Konto als das eingerichtete."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Samsung Find Optionen",
+        "data": {
+          "update_interval": "Aktualisierungsintervall (Sekunden)",
+          "pin": "Find-Verschlüsselungs-PIN",
+          "offline_after": "Offline nach (Minuten)"
+        },
+        "data_description": {
+          "update_interval": "Wie oft Home Assistant neue Daten bei Samsung Find abfragt.",
+          "pin": "Nur nötig, wenn die Ende-zu-Ende-Verschlüsselung für Ihre Tags aktiv ist.",
+          "offline_after": "Der Tag gilt als offline, wenn er so lange nicht gesehen wurde."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_level": {
+        "name": "Batteriestufe",
+        "state": {
+          "very_low": "Sehr niedrig",
+          "low": "Niedrig",
+          "medium": "Mittel",
+          "full": "Voll",
+          "unknown": "Unbekannt"
+        }
+      },
+      "last_seen": {
+        "name": "Zuletzt gesehen"
+      },
+      "accuracy": {
+        "name": "Standortgenauigkeit"
+      },
+      "battery_updated": {
+        "name": "Batterie aktualisiert"
+      },
+      "connection_state": {
+        "name": "Verbindungsstatus"
+      },
+      "location_method": {
+        "name": "Ortungsmethode"
+      }
+    },
+    "binary_sensor": {
+      "nearby": {
+        "name": "In der Nähe"
+      },
+      "online": {
+        "name": "Online"
+      },
+      "remote_ring": {
+        "name": "Fernklingeln aktiv"
+      },
+      "e2e_encryption": {
+        "name": "Ende-zu-Ende-Verschlüsselung"
+      },
+      "pin_required": {
+        "name": "PIN erforderlich"
+      },
+      "location_error": {
+        "name": "Standortfehler"
+      }
+    },
+    "button": {
+      "refresh": {
+        "name": "Daten aktualisieren"
+      },
+      "ring_start": {
+        "name": "Klingeln starten"
+      },
+      "ring_stop": {
+        "name": "Klingeln stoppen"
+      }
+    },
+    "switch": {
+      "searching": {
+        "name": "Suchmodus"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Firmware"
+      }
+    }
+  },
+  "exceptions": {
+    "ring_failed": {
+      "message": "Der Tag konnte nicht klingeln: {error}"
+    },
+    "searching_failed": {
+      "message": "Der Suchmodus konnte nicht geändert werden: {error}"
+    }
+  },
+  "services": {
+    "ring": {
+      "name": "Tag klingeln lassen",
+      "description": "Startet oder stoppt das Klingeln eines SmartTags.",
+      "fields": {
+        "action": {
+          "name": "Aktion",
+          "description": "Klingeln starten oder stoppen."
+        }
+      }
+    }
+  },
+  "selector": {
+    "ring_action": {
+      "options": {
+        "start": "Klingeln starten",
+        "stop": "Klingeln stoppen"
+      }
+    }
+  }
+}
