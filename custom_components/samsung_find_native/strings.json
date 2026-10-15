@@ -4,7 +4,7 @@
     "step": {
       "user": {
         "title": "Android bridge required",
-        "description": "**Without the Samsung Find Bridge app this setup will not work.** Install it on your Samsung phone first: [samsung-find-bridge.apk]({apk_url}). Then click Submit and sign in with your Samsung account in the page that opens on the phone."
+        "description": "**Without the Samsung Find Bridge app this setup will not work.** Install it on your Samsung phone first: [samsung-find-bridge.apk]({apk_url}). Then click Submit and sign in with your Samsung account in the page that opens on the phone. **The sign-in works only on that Android phone, not on a PC:** run this setup in the Home Assistant app on the phone."
       },
       "authorize": {
         "title": "Sign in to Samsung",

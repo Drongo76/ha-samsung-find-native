@@ -4,7 +4,7 @@
     "step": {
       "user": {
         "title": "Android-Bridge erforderlich",
-        "description": "**Ohne die App „Samsung Find Bridge“ funktioniert diese Einrichtung nicht.** Installiere sie zuerst auf deinem Samsung-Handy: [samsung-find-bridge.apk]({apk_url}). Klicke dann auf Senden und melde dich auf der Seite, die sich auf dem Handy öffnet, mit deinem Samsung-Konto an."
+        "description": "**Ohne die App „Samsung Find Bridge“ funktioniert diese Einrichtung nicht.** Installiere sie zuerst auf deinem Samsung-Handy: [samsung-find-bridge.apk]({apk_url}). Klicke dann auf Senden und melde dich auf der Seite, die sich auf dem Handy öffnet, mit deinem Samsung-Konto an. **Die Anmeldung funktioniert nur auf diesem Android-Handy, nicht am PC:** Starte die Einrichtung in der Home-Assistant-App auf dem Handy."
       },
       "authorize": {
         "title": "Bei Samsung anmelden",

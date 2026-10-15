@@ -147,7 +147,37 @@ class SamsungFindStartView(HomeAssistantView):
                 }
             )
         )
+        if "android" not in request.headers.get("User-Agent", "").lower():
+            return web.Response(
+                text=_NOT_ANDROID_PAGE,
+                content_type="text/html",
+                charset="utf-8",
+            )
         raise web.HTTPFound(location=bridge_uri)
+
+
+_NOT_ANDROID_PAGE = """<!doctype html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Samsung Find</title>
+<style>body{font-family:system-ui,sans-serif;max-width:34rem;margin:15vh auto;
+padding:0 1rem;line-height:1.5;color:#222}h1{font-size:1.3rem}
+@media(prefers-color-scheme:dark){body{background:#1c1c1c;color:#eee}}</style>
+</head><body>
+<h1>Open this link on your Samsung phone</h1>
+<p>The Samsung sign-in only works on an Android phone with the
+<b>Samsung Find Bridge</b> app installed. This device cannot continue.</p>
+<p>Open Home Assistant on the phone, or send this link to the phone and open it there.</p>
+<hr>
+<h1>Откройте эту ссылку на телефоне Samsung</h1>
+<p>Вход в Samsung работает только на Android-телефоне с установленным
+приложением <b>Samsung Find Bridge</b>. На этом устройстве продолжить нельзя.</p>
+<hr>
+<h1>Diesen Link auf dem Samsung-Handy öffnen</h1>
+<p>Die Samsung-Anmeldung funktioniert nur auf einem Android-Handy mit der
+App <b>Samsung Find Bridge</b>. Auf diesem Gerät geht es nicht weiter.</p>
+</body></html>
+"""
 
 
 class SamsungFindPrepareView(HomeAssistantView):
