@@ -243,7 +243,7 @@ class SamsungFindApi:
                     'metadata_keys': sorted(metadata.keys()),
                     'metadata_debug': {
                         key: metadata.get(key)
-                        for key in ('searchingStatus', 'remoteRing', 'lastKnownConnection')
+                        for key in ('searchingStatus', 'fmmSearch', 'activeMode', 'remoteRing', 'lastKnownConnection')
                         if key in metadata
                     },
                 }
@@ -354,7 +354,7 @@ class SamsungFindApi:
             "PUT",
             "/trackerapi",
             extra_uri=f"/trackers/{device_id}/searchingstatus",
-            body={"searchingStatus": "SEARCHING" if searching else "STOP"},
+            body={"searchingStatus": "searching" if searching else "stop"},
         )
 
 
