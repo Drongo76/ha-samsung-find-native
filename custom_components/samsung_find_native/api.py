@@ -203,7 +203,8 @@ class SamsungFindApi:
         if status_code != 200:
             raise SamsungFindApiError(
                 f"Samsung Find execute failed: {status_code} "
-                f"{wrapper.get('errorCode') or ''}"
+                f"{wrapper.get('errorCode') or ''} "
+                f"{str(wrapper.get('message') or '')[:300]}".strip()
             )
         return wrapper.get("message")
 
@@ -239,6 +240,12 @@ class SamsungFindApi:
                     'firmware': firmware.get('version'),
                     'latest_firmware': (firmware.get('latestFirmware') or {}).get('version'),
                     'searching_status': metadata.get('searchingStatus'),
+                    'metadata_keys': sorted(metadata.keys()),
+                    'metadata_debug': {
+                        key: metadata.get(key)
+                        for key in ('searchingStatus', 'remoteRing', 'lastKnownConnection')
+                        if key in metadata
+                    },
                 }
             )
         return result
